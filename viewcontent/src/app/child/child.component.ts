@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Attribute } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
@@ -6,11 +6,7 @@ import { ItemComponent } from '../item/item.component';
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.css']
 })
-export class ChildComponent extends ItemComponent implements OnInit {
-
-  // constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ChildComponent implements OnInit {
+  constructor(@Attribute('type') public type = 'advanced') {}
+  ngOnInit() {}
 }

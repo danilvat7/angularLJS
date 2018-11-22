@@ -6,9 +6,14 @@ import {
   ElementRef,
   ContentChildren,
   QueryList,
-  AfterViewInit
+  AfterViewInit,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  ViewChild
 } from '@angular/core';
 import { NestedComponent } from '../nested/nested.component';
+import { BannerComponent } from '../banner/banner.component';
+import { HostDirective } from '../host.directive';
 
 @Component({
   selector: 'app-item',
@@ -21,7 +26,13 @@ export class ItemComponent implements OnInit, AfterContentInit, AfterViewInit {
   @ContentChildren(NestedComponent, { read: NestedComponent })
   nestedComponent: QueryList<NestedComponent>;
 
-  constructor() {}
+  @ViewChild(HostDirective) host: HostDirective;
+
+  myComponent;
+  constructor(
+    private view: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   ngAfterViewInit() {
     // console.log('ngAfterViewInit');
@@ -29,7 +40,15 @@ export class ItemComponent implements OnInit, AfterContentInit, AfterViewInit {
   ngAfterContentInit() {
     // console.log('ngAfterContentInit');
     // console.log(this.headerElement.nativeElement);
-    console.log(this.nestedComponent);
+    // console.log(this.nestedComponent);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+      BannerComponent
+    );
+
+    const instance = this.host.view.createComponent(componentFactory);
+    instance.instance.title = 'Mega banner!';
+    this.myComponent = BannerComponent;
+  }
 }

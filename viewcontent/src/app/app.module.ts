@@ -8,22 +8,25 @@ import { NestedComponent } from './nested/nested.component';
 import { ColoryDirective } from './colory.directive';
 import { ChildComponent } from './child/child.component';
 import { DelayDirective } from './delay.directive';
+import { BannerComponent } from './banner/banner.component';
+import { HostDirective } from './host.directive';
+import { ConvertPipe } from './convert.pipe';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      ItemComponent,
-      NestedComponent,
-      ColoryDirective,
-      ChildComponent, DelayDirective
-   ],
-   imports: [
-      BrowserModule,
-      AppRoutingModule
-   ],
-   providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    ItemComponent,
+    NestedComponent,
+    ColoryDirective,
+    ChildComponent,
+    DelayDirective,
+    BannerComponent,
+    HostDirective,
+    ConvertPipe
+  ],
+  imports: [BrowserModule, AppRoutingModule],
+  entryComponents: [BannerComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

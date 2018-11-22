@@ -1,4 +1,7 @@
 View
+
+<div host></div>
+
 <ng-content selector="h1"></ng-content>
 <ng-content selector="main"></ng-content>
 
@@ -17,3 +20,5 @@ ngTemplateOutlet
     <h1 *delay="time">structural directive</h1>
   </li>
 </ul>
+
+<ng-container *ngComponentOutlet="myComponent"></ng-container>
